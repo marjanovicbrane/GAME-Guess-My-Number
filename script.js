@@ -8,7 +8,10 @@ let secretNumber=Math.trunc(Math.random()*20)+1;
 //document.querySelector('.number').textContent=secretNumber;
 
 //start value for score
-let score=7;
+let score=10;
+
+//initial value for high score
+let highScore=0;
 
 //Adding event listener to the button check and saving into vairable value from the input field.
 document.querySelector('.check').addEventListener('click', function (){
@@ -36,6 +39,13 @@ document.querySelector('.check').addEventListener('click', function (){
 
     //we also want to increase width of number field if player wins
     document.querySelector('.number').style.width='30rem';
+
+    //high score
+    //if it's current score greater than high score
+    if(score>highScore){
+       highScore=score;
+      document.querySelector('.highscore').textContent=highScore;
+    }
 
     //when guess is too high
    }else if(guess>secretNumber){
@@ -75,14 +85,16 @@ document.querySelector('.check').addEventListener('click', function (){
 
 //Again button
 document.querySelector('.again').addEventListener('click',function(){
-   const score=7;
+
+   //re-assigning 
+   score=10;
    document.querySelector('.score').textContent=score;
 
    //we don't want to create a new secret number, we want when the new game starts to create a new secret number and than re-assigning the variable
    secretNumber=Math.trunc(Math.random()*20)+1;
 
    document.querySelector('.number').textContent='?';
-   secretNumber2;
+   secretNumber;
 
    document.querySelector('.message').textContent='Start guessing...';
 
