@@ -2,9 +2,10 @@
 
 
 //RANDOM NUMBER BETWEEN 1-20
-const secretNumber=Math.trunc(Math.random()*20)+1;
+let secretNumber=Math.trunc(Math.random()*20)+1;
+
 //just for debugging
-document.querySelector('.number').textContent=secretNumber;
+//document.querySelector('.number').textContent=secretNumber;
 
 //start value for score
 let score=7;
@@ -25,6 +26,9 @@ document.querySelector('.check').addEventListener('click', function (){
     //when player wins
    }else if(guess===secretNumber){
     document.querySelector('.message').textContent='😆 Correct number!';
+
+    //we want to show that number, when player win
+    document.querySelector('.number').textContent=secretNumber;
 
     //we are going to manipulate CSS styles here
     //if player wins background of the game need to be green
@@ -64,4 +68,28 @@ document.querySelector('.check').addEventListener('click', function (){
             document.querySelector('.score').textContent=0;
            }
         }
+})
+
+
+
+
+//Again button
+document.querySelector('.again').addEventListener('click',function(){
+   const score=7;
+   document.querySelector('.score').textContent=score;
+
+   //we don't want to create a new secret number, we want when the new game starts to create a new secret number and than re-assigning the variable
+   secretNumber=Math.trunc(Math.random()*20)+1;
+
+   document.querySelector('.number').textContent='?';
+   secretNumber2;
+
+   document.querySelector('.message').textContent='Start guessing...';
+
+   document.querySelector('.guess').value='';
+
+   document.querySelector('.number').style.width='15rem';
+
+   document.querySelector('body').style.backgroundColor='#222';
+
 })
