@@ -14,14 +14,26 @@ document.querySelector('.check').addEventListener('click', function (){
     const guess=Number(document.querySelector('.guess').value);
     console.log(guess,typeof guess);
 
+    //Where there is no input
     //When we don't enter anything to input field...
     //guess=0 and o is falsy value, so guess is FALSE
     //in this if statement.
     //!FALSE=TRUE
    if(!guess){
     document.querySelector('.message').textContent='👎 No number!';
+
+    //when player wins
    }else if(guess===secretNumber){
-    document.querySelector('.message').textContent='👍 Correct number!';
+    document.querySelector('.message').textContent='😆 Correct number!';
+
+    //we are going to manipulate CSS styles here
+    //if player wins background of the game need to be green
+    document.querySelector('body').style.backgroundColor='#60b347';
+
+    //we also want to increase width of number field if player wins
+    document.querySelector('.number').style.width='30rem';
+
+    //when guess is too high
    }else if(guess>secretNumber){
         //We want to add here some additional logic, for case
        //if we lost all our score (0), we need to get some message that game is over.
@@ -38,6 +50,8 @@ document.querySelector('.check').addEventListener('click', function (){
             document.querySelector('.message').textContent='⚠️ GAME OVER!';
             document.querySelector('.score').textContent=0;
            }
+
+    //when guess is too low
    }else if(guess<secretNumber){
     if(score >1){
         document.querySelector('.message').textContent='📉 Too low';
