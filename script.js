@@ -13,6 +13,12 @@ let score=10;
 //initial value for high score
 let highScore=0;
 
+
+//we will create a function for messages
+const displayMessage=function(message){
+   document.querySelector('.message').textContent=message;
+}
+
 //Adding event listener to the button check and saving into vairable value from the input field.
 document.querySelector('.check').addEventListener('click', function (){
     const guess=Number(document.querySelector('.guess').value);
@@ -24,11 +30,13 @@ document.querySelector('.check').addEventListener('click', function (){
     //in this if statement.
     //!FALSE=TRUE
    if(!guess){
-    document.querySelector('.message').textContent='👎 No number!';
+    //document.querySelector('.message').textContent='👎 No number!';
+    displayMessage('👎 No number!');
 
     //when player wins
    }else if(guess===secretNumber){
-    document.querySelector('.message').textContent='😆 Correct number!';
+    //document.querySelector('.message').textContent='😆 Correct number!';
+    displayMessage('😆 Correct number!');
 
     //we want to show that number, when player win
     document.querySelector('.number').textContent=secretNumber;
@@ -47,38 +55,60 @@ document.querySelector('.check').addEventListener('click', function (){
       document.querySelector('.highscore').textContent=highScore;
     }
 
-    //when guess is too high
-   }else if(guess>secretNumber){
-        //We want to add here some additional logic, for case
-       //if we lost all our score (0), we need to get some message that game is over.
-       //We can achive this with another if statement, where
-       //score need to be greater then 0 and then need to do
-       //all this block with a message that the number is too high.
-       if(score >1){
-        document.querySelector('.message').textContent='📈 Too high';
-        //We want to implement here logic for score.
-       //If we enter a wrong number our score need to be decremented for 1
-        score--;
-        document.querySelector('.score').textContent=score;
-           }else{
-            document.querySelector('.message').textContent='⚠️ GAME OVER!';
-            document.querySelector('.score').textContent=0;
-           }
+    //Refactoring our code, to eliminate duplicate code.
+    //When the guess is different from the secret number.
+   }else if(guess!==secretNumber){
+      //We want to add here some additional logic, for case
+     //if we lost all our score (0), we need to get some message that game is over.
+     //We can achive this with another if statement, where
+     //score need to be greater then 0 and then need to do
+     //all this block with a message that the number is too high.
+     if(score >1){
+      //document.querySelector('.message').textContent=guess>secretNumber?'📈 Too high': '📉 Too low';
+      displayMessage(guess>secretNumber?'📈 Too high': '📉 Too low');
 
-    //when guess is too low
-   }else if(guess<secretNumber){
-    if(score >1){
-        document.querySelector('.message').textContent='📉 Too low';
-        //We want to implement here logic for score.
-       //If we enter a wrong number our score need to be decremented for 1
-        score--;
-        document.querySelector('.score').textContent=score;
-           }else{
-            document.querySelector('.message').textContent='⚠️ GAME OVER!';
-            document.querySelector('.score').textContent=0;
-           }
-        }
-})
+      //We want to implement here logic for score.
+     //If we enter a wrong number our score need to be decremented for 1
+      score--;
+      document.querySelector('.score').textContent=score;
+         }else{
+          //document.querySelector('.message').textContent='⚠️ GAME OVER!';
+          displayMessage('⚠️ GAME OVER!');
+          document.querySelector('.score').textContent=0;
+         }
+      }
+   });
+   //    else if(guess>secretNumber){
+   //      //We want to add here some additional logic, for case
+   //     //if we lost all our score (0), we need to get some message that game is over.
+   //     //We can achive this with another if statement, where
+   //     //score need to be greater then 0 and then need to do
+   //     //all this block with a message that the number is too high.
+   //     if(score >1){
+   //      document.querySelector('.message').textContent='📈 Too high';
+   //      //We want to implement here logic for score.
+   //     //If we enter a wrong number our score need to be decremented for 1
+   //      score--;
+   //      document.querySelector('.score').textContent=score;
+   //         }else{
+   //          document.querySelector('.message').textContent='⚠️ GAME OVER!';
+   //          document.querySelector('.score').textContent=0;
+   //         }
+
+   //  //when guess is too low
+   // }else if(guess<secretNumber){
+   //  if(score >1){
+   //      document.querySelector('.message').textContent='📉 Too low';
+   //      //We want to implement here logic for score.
+   //     //If we enter a wrong number our score need to be decremented for 1
+   //      score--;
+   //      document.querySelector('.score').textContent=score;
+   //         }else{
+   //          document.querySelector('.message').textContent='⚠️ GAME OVER!';
+   //          document.querySelector('.score').textContent=0;
+   //         }
+   //      }
+
 
 
 
@@ -96,7 +126,8 @@ document.querySelector('.again').addEventListener('click',function(){
    document.querySelector('.number').textContent='?';
    secretNumber;
 
-   document.querySelector('.message').textContent='Start guessing...';
+   //document.querySelector('.message').textContent='Start guessing...';
+   displayMessage('Start guessing...');
 
    document.querySelector('.guess').value='';
 
