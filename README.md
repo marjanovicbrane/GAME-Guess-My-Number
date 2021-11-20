@@ -20,5 +20,5 @@ This game is great example for Java Script begginers to learn fundamentals of HT
 
 In this example we can learn to use DOM manipulation, which is one of the most important fundamentals of Java Script.
 
-In this example we can also learn how to use Event Listeners and buttons, so we can have interactions with our game and we also learned how to manipulate with CSS styles using Java Script.
+In this example we can also learn how to use Event Listeners and buttons, so we can have interactions with our game and we also learned how to manipulate with CSS styles using Java Script and much more.
 
